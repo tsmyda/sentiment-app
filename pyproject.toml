@@ -25,6 +25,7 @@ torch = [
 
 [dependency-groups]
 dev = [
+    "httpx>=0.28.1",
     "mypy>=2.4.0",
     "pre-commit>=4.6.2",
     "pytest>=9.1.1",
@@ -38,3 +39,7 @@ check_untyped_defs = true
 [[tool.mypy.overrides]]
 module = ["joblib.*", "sklearn.*", "cleantext.*"]
 ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

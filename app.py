@@ -2,7 +2,7 @@ from pathlib import Path
 
 import joblib
 from fastapi import FastAPI
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 from sentence_transformers import SentenceTransformer
 
 MODEL_DIR = Path(__file__).resolve().parent / "model"
@@ -14,7 +14,8 @@ classifier = joblib.load(MODEL_DIR / "classifier.joblib")
 
 
 class PredictRequest(BaseModel):
-    text: str
+    model_config = ConfigDict(str_strip_whitespace=True)
+    text: str = Field(min_length=1)
 
 
 class PredictResponse(BaseModel):
