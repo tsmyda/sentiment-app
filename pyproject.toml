@@ -30,3 +30,11 @@ dev = [
     "pytest>=9.1.1",
     "ruff>=0.16.10",
 ]
+
+[tool.mypy]
+python_version = "3.12"
+check_untyped_defs = true
+
+[[tool.mypy.overrides]]
+module = ["joblib.*", "sklearn.*", "cleantext.*"]
+ignore_missing_imports = true
